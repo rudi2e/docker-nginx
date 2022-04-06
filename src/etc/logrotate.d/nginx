@@ -1,0 +1,11 @@
+/var/log/nginx/*.log {
+    weekly
+    rotate 26
+    missingok
+    compress
+    dateext
+    notifempty
+    postrotate
+        nginx -s reopen
+    endscript
+}

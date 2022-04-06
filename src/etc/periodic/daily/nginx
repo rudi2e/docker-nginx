@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+### Copyright (c) Rudi2e
+
+exec /docker-entrypoint.d/80-init.sh
