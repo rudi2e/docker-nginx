@@ -21,9 +21,7 @@ RUN apk add --no-cache supervisor logrotate jq curl ca-certificates \
           /etc/nginx/mail.conf.d \
  && ln -s /nginx/bots.d /etc/nginx/bots.d
 
-COPY --chown=root:root etc /
-COPY --chown=root:root docker-entrypoint.d /
-COPY --chown=root:root bin /usr/local
+COPY --chown=root:root src /
 
 RUN chmod 755 /docker-entrypoint.d/80-init.sh \
               /usr/local/bin/nginx_real_ip_cdn.sh \
