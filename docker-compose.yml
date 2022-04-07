@@ -3,14 +3,17 @@ version: '3.7'
 services:
   nginx:
     image: rudi2e/nginx:latest
-    container_name: nginx_test
+    container_name: nginx
     restart: unless-stopped
     ports:
       - 80:80
       - 443:443
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./data:/nginx
+      - ./nginx-data:/nginx
+      - ./conf.d:/etc/nginx/conf.d:ro
+      - ./log:/var/log/nginx
+      - ./log-supervisord:/var/log/supervisord
     environment:
       - REAL_IP_CDN_PROVIDER=all
       - NGINX_ULTIMATE_BAD_BOT_BLOCKER=true
