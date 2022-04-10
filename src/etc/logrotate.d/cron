@@ -1,0 +1,8 @@
+/var/log/cron/*.log {
+    weekly
+    rotate 4
+    missingok
+    nocompress
+    dateext
+    notifempty
+}
