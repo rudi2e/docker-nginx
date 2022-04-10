@@ -2,7 +2,7 @@ FROM nginx:stable-alpine
 
 LABEL maintainer="rudi2e"
 LABEL title="nginx"
-LABEL version="0.1.2"
+LABEL version="0.1.3"
 LABEL description=""
 
 RUN ([ -x "/usr/bin/run-parts" ] || ln -s /bin/run-parts /usr/bin/run-parts) \
@@ -17,6 +17,7 @@ RUN ([ -x "/usr/bin/run-parts" ] || ln -s /bin/run-parts /usr/bin/run-parts) \
     /usr/local/sbin/update-ngxblocker \
     /usr/local/sbin/setup-ngxblocker \
     && sed -i 's/"nginx-debug"/"nginx-debug" -o "$1" = "supervisord"/g' /docker-entrypoint.sh \
+    && sed -i 's/logrotate \/etc\/logrotate.conf/logrotate -s \/nginx\/logrotate.status \/etc\/logrotate.conf/g' /etc/periodic/daily/logrotate \
     && mkdir /nginx \
     /nginx/dynamic.d \
     /nginx/bots.d \
@@ -24,9 +25,7 @@ RUN ([ -x "/usr/bin/run-parts" ] || ln -s /bin/run-parts /usr/bin/run-parts) \
     /var/log/cron \
     /etc/nginx/stream.conf.d \
     /etc/nginx/mail.conf.d \
-    && ln -s /nginx/bots.d /etc/nginx/bots.d \
-    && touch /nginx/logrotate.status \
-    && ln -s /nginx/logrotate.status /var/lib/logrotate.status
+    && ln -s /nginx/bots.d /etc/nginx/bots.d
 
 COPY --chown=root:root src /
 

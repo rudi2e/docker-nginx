@@ -5,7 +5,6 @@ dynamic_d_directory="/nginx/dynamic.d"
 
 [ -d "$dynamic_d_directory" ] || mkdir "$dynamic_d_directory"
 [ -d "/nginx/bots.d" ] || mkdir /nginx/bots.d
-[ -e "/nginx/logrotate.status" ] || touch /nginx/logrotate.status
 
 [ -d "/var/log/nginx" ] || mkdir /var/log/nginx
 [ -d "/var/log/supervisord" ] || mkdir /var/log/supervisord
