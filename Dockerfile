@@ -27,7 +27,7 @@ RUN ([ -x "/usr/bin/run-parts" ] || ln -s /bin/run-parts /usr/bin/run-parts) \
     /etc/nginx/mail.conf.d \
     && ln -s /nginx/bots.d /etc/nginx/bots.d
 
-COPY --chown=root:root src /
+COPY --chown=root:root rootfs /
 
 RUN chmod 755 /docker-entrypoint.d/80-init.sh \
     /usr/local/bin/nginx_real_ip_cdn.sh \
