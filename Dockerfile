@@ -2,7 +2,6 @@ FROM nginx:stable-alpine
 
 LABEL maintainer="rudi2e"
 LABEL title="nginx"
-LABEL version="0.1.3"
 LABEL description=""
 
 RUN ([ -x "/usr/bin/run-parts" ] || ln -s /bin/run-parts /usr/bin/run-parts) \
