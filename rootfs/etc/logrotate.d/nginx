@@ -1,6 +1,7 @@
 /var/log/nginx/*.log {
     weekly
     rotate 26
+    maxage 185
     missingok
     compress
     dateext

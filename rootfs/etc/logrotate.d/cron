@@ -1,6 +1,7 @@
 /var/log/cron/*.log {
     weekly
     rotate 4
+    maxage 31
     missingok
     nocompress
     dateext
