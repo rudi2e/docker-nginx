@@ -20,11 +20,12 @@ RUN ([ -x "/usr/bin/run-parts" ] || ln -s /bin/run-parts /usr/bin/run-parts) \
     && mkdir /nginx \
     /nginx/dynamic.d \
     /nginx/bots.d \
-    /var/log/supervisord \
+    /var/log/supervisor \
     /var/log/cron \
     /etc/nginx/stream.conf.d \
     /etc/nginx/mail.conf.d \
-    && ln -s /nginx/bots.d /etc/nginx/bots.d
+    && ln -s /nginx/bots.d /etc/nginx/bots.d \
+    && mv /etc/periodic/daily/logrotate /etc/periodic/15min/logrotate
 
 COPY --chown=root:root rootfs /
 
