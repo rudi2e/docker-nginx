@@ -13,7 +13,7 @@ services:
       - ./nginx-data:/nginx
       - ./conf.d:/etc/nginx/conf.d:ro
       - ./log:/var/log/nginx
-      - ./log-supervisord:/var/log/supervisord
+      - ./log-supervisor:/var/log/supervisor
     environment:
       - REAL_IP_CDN_PROVIDER=all
       - NGINX_ULTIMATE_BAD_BOT_BLOCKER=true
