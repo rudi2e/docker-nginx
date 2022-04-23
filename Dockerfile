@@ -1,10 +1,21 @@
 FROM nginx:stable-alpine
 
-LABEL maintainer="rudi2e"
-LABEL title="nginx"
-LABEL description=""
+ARG BUILD_DATE
+#ARG BUILD_REVISION
 
-RUN ([ -x "/usr/bin/run-parts" ] || ln -s /bin/run-parts /usr/bin/run-parts) \
+LABEL org.opencontainers.image.title="nginx"
+#LABEL org.opencontainers.image.description=""
+#LABEL org.opencontainers.image.authors=""
+LABEL org.opencontainers.image.vendor="Rudi2e"
+LABEL org.opencontainers.image.licenses="MIT"
+LABEL org.opencontainers.image.version="0.1.5"
+LABEL org.opencontainers.image.source="https://github.com/rudi2e/docker-nginx.git"
+#LABEL org.opencontainers.image.revision="$BUILD_REVISION"
+LABEL org.opencontainers.image.created="$BUILD_DATE"
+
+RUN if [ "$(uname -m)" = "aarch64" ]; then \
+        [ -x "/usr/bin/run-parts" ] || ln -s /bin/run-parts /usr/bin/run-parts; \
+    fi \
     && apk add --no-cache supervisor logrotate jq curl ca-certificates \
     && rm -rf /var/cache/apk/* \
     && update-ca-certificates \
